@@ -1,21 +1,63 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
+import HomeScreen from "./screens/HomeScreen";
+import SearchScreen from "./screens/SearchScreen";
+import CommunityScreen from "./screens/CommunityScreen";
+import MapScreen from "./screens/MapScreen";
+import ProfileScreen from "./screens/ProfileScreen";
+import { Ionicons } from "@expo/vector-icons";
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Kwon</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator>
+        {/*하단 탭*/}
+        <Tab.Screen
+          options={{
+            tabBarIcon: () => <Ionicons name="home" size={24} color="black" />,
+          }}
+          name="Climbers"
+          component={HomeScreen}
+        />
+        <Tab.Screen
+          options={{
+            tabBarIcon: () => (
+              <Ionicons name="search" size={24} color="black" />
+            ),
+            headerShown: false,
+          }}
+          name="Search"
+          component={SearchScreen}
+        />
+        <Tab.Screen
+          options={{
+            tabBarIcon: () => (
+              <Ionicons name="chatbox-ellipses" size={24} color="black" />
+            ),
+          }}
+          name="Community"
+          component={CommunityScreen}
+        />
+        <Tab.Screen
+          options={{
+            tabBarIcon: () => <Ionicons name="map" size={24} color="black" />,
+          }}
+          name="Map"
+          component={MapScreen}
+        />
+        <Tab.Screen
+          options={{
+            tabBarIcon: () => (
+              <Ionicons name="person" size={24} color="black" />
+            ),
+          }}
+          name="Profile"
+          component={ProfileScreen}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
