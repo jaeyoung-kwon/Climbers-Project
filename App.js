@@ -1,5 +1,5 @@
 import auth from "@react-native-firebase/auth";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import HomeScreen from "./screens/HomeScreen";
@@ -8,12 +8,29 @@ import CommunityScreen from "./screens/CommunityScreen";
 import MapScreen from "./screens/MapScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import { Ionicons } from "@expo/vector-icons";
+import { PERMISSIONS, RESULTS, request, check } from "react-native-permissions";
+import { Platform } from "react-native";
+import Geolocation from "react-native-geolocation-service";
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-  useEffect(() => {
-    console.log(auth().currentUser);
+  const [permission, setPermission] = useState("");
+  const askPermission = async () => {
+    try {
+      await request(
+        Platform.OS === "ios"
+          ? PERMISSIONS.IOS.LOCATION_ALWAYS
+          : PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION
+      ).then((result) => {
+        setPermission(result);
+      });
+    } catch (error) {
+      console.log("askPermission", error);
+    }
+  };
+  useEffect(async () => {
+    await askPermission();
   }, []);
   return (
     <NavigationContainer>

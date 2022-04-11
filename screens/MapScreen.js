@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components/native";
 import NaverMapView, {
   Circle,
@@ -7,14 +7,39 @@ import NaverMapView, {
   Polyline,
   Polygon,
 } from "react-native-nmap";
+import { PERMISSIONS, RESULTS, request, check } from "react-native-permissions";
+import Geolocation from "react-native-geolocation-service";
 
 const Container = styled.View``;
 const Title = styled.Text``;
 
-const MapScreen = () => {
+const MapScreen = ({ permission }) => {
+  const getLocation = () => {
+    check(
+      Platform.OS === "ios"
+        ? PERMISSIONS.IOS.LOCATION_ALWAYS
+        : PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION
+    ).then((result) => {
+      if (result === "granted") {
+        Geolocation.getCurrentPosition(
+          (position) => {
+            console.log(position);
+          },
+          (error) => {
+            // See error code charts below.
+            console.log(error.code, error.message);
+          },
+          { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+        );
+      }
+    });
+  };
   const P0 = { latitude: 37.564362, longitude: 126.977011 };
   const P1 = { latitude: 37.565051, longitude: 126.978567 };
   const P2 = { latitude: 37.565383, longitude: 126.976292 };
+  useEffect(async () => {
+    getLocation();
+  }, []);
   return (
     <NaverMapView
       style={{ width: "100%", height: "100%" }}
