@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components/native";
 import NaverMapView, {
   Circle,
@@ -7,13 +7,11 @@ import NaverMapView, {
   Polyline,
   Polygon,
 } from "react-native-nmap";
-import { PERMISSIONS, RESULTS, request, check } from "react-native-permissions";
+import { PERMISSIONS, check } from "react-native-permissions";
 import Geolocation from "react-native-geolocation-service";
 
-const Container = styled.View``;
-const Title = styled.Text``;
-
-const MapScreen = ({ permission }) => {
+const MapScreen = () => {
+  const [location, setLocation] = useState({});
   const getLocation = () => {
     check(
       Platform.OS === "ios"
@@ -23,7 +21,10 @@ const MapScreen = ({ permission }) => {
       if (result === "granted") {
         Geolocation.getCurrentPosition(
           (position) => {
-            console.log(position);
+            setLocation({
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude,
+            });
           },
           (error) => {
             // See error code charts below.
@@ -38,21 +39,21 @@ const MapScreen = ({ permission }) => {
   const P1 = { latitude: 37.565051, longitude: 126.978567 };
   const P2 = { latitude: 37.565383, longitude: 126.976292 };
   useEffect(async () => {
-    getLocation();
+    await getLocation();
   }, []);
+  const onClickMarker = () => {
+    console.log("Hello");
+  };
   return (
     <NaverMapView
       style={{ width: "100%", height: "100%" }}
       showsMyLocationButton={true}
-      center={{ ...P0, zoom: 16 }}
+      center={{ ...P0, zoom: 12 }}
     >
       <Marker coordinate={P0} />
-      <Marker coordinate={P1} pinColor="blue" />
+      <Marker coordinate={P1} pinColor="blue" onClick={onClickMarker} />
       <Marker coordinate={P2} pinColor="red" />
-      <Path coordinates={[P0, P1]} width={10} />
-      <Polyline coordinates={[P1, P2]} />
-      <Circle coordinate={P0} color={"rgba(255,0,0,0.3)"} radius={200} />
-      <Polygon coordinates={[P0, P1, P2]} color={`rgba(0, 0, 0, 0.5)`} />
+      <Marker coordinate={location} />
     </NaverMapView>
   );
 };

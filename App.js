@@ -10,8 +10,10 @@ import ProfileScreen from "./screens/ProfileScreen";
 import { Ionicons } from "@expo/vector-icons";
 import { PERMISSIONS, RESULTS, request, check } from "react-native-permissions";
 import { Platform } from "react-native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Geolocation from "react-native-geolocation-service";
 
+const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
