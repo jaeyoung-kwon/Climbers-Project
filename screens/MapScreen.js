@@ -1,17 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components/native";
-import NaverMapView, {
-  Circle,
-  Marker,
-  Path,
-  Polyline,
-  Polygon,
-} from "react-native-nmap";
+import NaverMapView, { Marker } from "react-native-nmap";
 import { PERMISSIONS, check } from "react-native-permissions";
 import Geolocation from "react-native-geolocation-service";
+import RBSheet from "react-native-raw-bottom-sheet";
+
+const Container = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+const Title = styled.Text``;
 
 const MapScreen = () => {
   const [location, setLocation] = useState({});
+  const [locationInfo, setLocationInfo] = useState({});
+  const refRBSheet = useRef();
   const getLocation = () => {
     check(
       Platform.OS === "ios"
@@ -41,20 +45,65 @@ const MapScreen = () => {
   useEffect(async () => {
     await getLocation();
   }, []);
-  const onClickMarker = () => {
-    console.log("Hello");
+  const openBottomSheet = (loca) => {
+    setLocationInfo(loca);
+    refRBSheet.current.open();
+    console.log(loca);
   };
   return (
-    <NaverMapView
-      style={{ width: "100%", height: "100%" }}
-      showsMyLocationButton={true}
-      center={{ ...P0, zoom: 12 }}
-    >
-      <Marker coordinate={P0} />
-      <Marker coordinate={P1} pinColor="blue" onClick={onClickMarker} />
-      <Marker coordinate={P2} pinColor="red" />
-      <Marker coordinate={location} />
-    </NaverMapView>
+    <>
+      <NaverMapView
+        style={{ width: "100%", height: "100%" }}
+        showsMyLocationButton={true}
+        center={{ ...P0, zoom: 16 }}
+      >
+        <Marker
+          coordinate={P0}
+          onClick={() => {
+            setLocationInfo(P0);
+            refRBSheet.current.open();
+            console.log(P0);
+          }}
+        />
+        <Marker
+          coordinate={P1}
+          pinColor="blue"
+          onClick={() => {
+            setLocationInfo(P1);
+            refRBSheet.current.open();
+            console.log(P1);
+          }}
+        />
+        <Marker
+          coordinate={P2}
+          pinColor="red"
+          onClick={() => {
+            setLocationInfo(P2);
+            refRBSheet.current.open();
+            console.log(P2);
+          }}
+        />
+        <Marker coordinate={location} />
+      </NaverMapView>
+      <RBSheet
+        ref={refRBSheet}
+        closeOnDragDown={true}
+        closeOnPressMask={false}
+        customStyles={{
+          wrapper: {
+            backgroundColor: "transparent",
+          },
+          draggableIcon: {
+            backgroundColor: "#000",
+          },
+        }}
+      >
+        <Container>
+          <Title>{locationInfo.latitude}</Title>
+          <Title>{locationInfo.longitude}</Title>
+        </Container>
+      </RBSheet>
+    </>
   );
 };
 
