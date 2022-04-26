@@ -1,4 +1,8 @@
 apply plugin: "com.android.application"
+<<<<<<< HEAD
+=======
+apply plugin: 'com.google.gms.google-services'
+>>>>>>> fcd9be62da78ed6582b8dac628c12c0c7536f85b
 
 import com.android.build.OutputFile
 
@@ -132,7 +136,11 @@ android {
     }
 
     defaultConfig {
+<<<<<<< HEAD
         applicationId "com.climbers"
+=======
+        applicationId "com.climbersproject"
+>>>>>>> fcd9be62da78ed6582b8dac628c12c0c7536f85b
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -184,6 +192,11 @@ android {
 }
 
 dependencies {
+<<<<<<< HEAD
+=======
+    implementation platform('com.google.firebase:firebase-bom:29.2.1')
+    implementation 'com.google.firebase:firebase-analytics'
+>>>>>>> fcd9be62da78ed6582b8dac628c12c0c7536f85b
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules

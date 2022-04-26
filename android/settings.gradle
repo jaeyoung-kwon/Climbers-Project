@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 rootProject.name = 'Climbers'
+=======
+rootProject.name = 'ClimbersProject'
+>>>>>>> fcd9be62da78ed6582b8dac628c12c0c7536f85b
 
 apply from: new File(["node", "--print", "require.resolve('expo/package.json')"].execute(null, rootDir).text.trim(), "../scripts/autolinking.gradle");
 useExpoModules()

@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "479434192536",
+    "project_id": "climbers-project",
+    "storage_bucket": "climbers-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:479434192536:android:638bf715375b148e0142ed",
+        "android_client_info": {
+          "package_name": "com.climbersproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "479434192536-up2fivvf7j8c5i9bnbg8g2m3cb8s3d82.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.climbersproject",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "479434192536-ajhdhge5d1ncv7uiimu85eaa8c3ob82i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYE5TOyK9j73-_zuTZhP5JOPz8K2uwTzI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "479434192536-ajhdhge5d1ncv7uiimu85eaa8c3ob82i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "479434192536-lj8bkipe960nguq7gaj3fhcjnqh52osq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.name.ClimbersProject"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
