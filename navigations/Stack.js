@@ -5,7 +5,6 @@ import Detail from "../screens/Detail";
 const NativeStack = createNativeStackNavigator();
 
 const Stack = () => {
-  const isDark = useColorScheme() === "dark";
   return (
     <NativeStack.Navigator>
       <NativeStack.Screen name="Detail" component={Detail} />

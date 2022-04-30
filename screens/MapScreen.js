@@ -4,7 +4,12 @@ import NaverMapView, { Marker } from "react-native-nmap";
 import { PERMISSIONS, check } from "react-native-permissions";
 import Geolocation from "react-native-geolocation-service";
 import RBSheet from "react-native-raw-bottom-sheet";
+import { TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/core";
 
+const Touchable = styled.TouchableOpacity`
+  flex: 1;
+`;
 const Container = styled.View`
   flex: 1;
   justify-content: center;
@@ -13,6 +18,9 @@ const Container = styled.View`
 const Title = styled.Text``;
 
 const MapScreen = () => {
+  const P0 = { latitude: 37.564362, longitude: 126.977011 };
+  const P1 = { latitude: 37.565051, longitude: 126.978567 };
+  const P2 = { latitude: 37.565383, longitude: 126.976292 };
   const [location, setLocation] = useState({});
   const [locationInfo, setLocationInfo] = useState({});
   const refRBSheet = useRef();
@@ -39,16 +47,21 @@ const MapScreen = () => {
       }
     });
   };
-  const P0 = { latitude: 37.564362, longitude: 126.977011 };
-  const P1 = { latitude: 37.565051, longitude: 126.978567 };
-  const P2 = { latitude: 37.565383, longitude: 126.976292 };
   useEffect(async () => {
     await getLocation();
   }, []);
   const openBottomSheet = (loca) => {
     setLocationInfo(loca);
     refRBSheet.current.open();
-    console.log(loca);
+  };
+  const navigation = useNavigation();
+  const goToDetail = () => {
+    //@ts-ignore
+    refRBSheet.current.close();
+    navigation.navigate("Stack", {
+      screen: "Detail",
+      params: { ...locationInfo },
+    });
   };
   return (
     <>
@@ -62,7 +75,6 @@ const MapScreen = () => {
           onClick={() => {
             setLocationInfo(P0);
             refRBSheet.current.open();
-            console.log(P0);
           }}
         />
         <Marker
@@ -71,7 +83,6 @@ const MapScreen = () => {
           onClick={() => {
             setLocationInfo(P1);
             refRBSheet.current.open();
-            console.log(P1);
           }}
         />
         <Marker
@@ -80,15 +91,14 @@ const MapScreen = () => {
           onClick={() => {
             setLocationInfo(P2);
             refRBSheet.current.open();
-            console.log(P2);
           }}
         />
         <Marker coordinate={location} />
       </NaverMapView>
+
       <RBSheet
         ref={refRBSheet}
         closeOnDragDown={true}
-        closeOnPressMask={false}
         customStyles={{
           wrapper: {
             backgroundColor: "transparent",
@@ -98,10 +108,12 @@ const MapScreen = () => {
           },
         }}
       >
-        <Container>
-          <Title>{locationInfo.latitude}</Title>
-          <Title>{locationInfo.longitude}</Title>
-        </Container>
+        <Touchable onPress={goToDetail}>
+          <Container>
+            <Title>{locationInfo.latitude}</Title>
+            <Title>{locationInfo.longitude}</Title>
+          </Container>
+        </Touchable>
       </RBSheet>
     </>
   );
