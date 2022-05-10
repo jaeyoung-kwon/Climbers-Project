@@ -1,3 +1,7 @@
 <resources>
+<<<<<<< HEAD
+    <string name="app_name">Climbers</string>
+=======
     <string name="app_name">Climbers_Project</string>
+>>>>>>> fcd9be62da78ed6582b8dac628c12c0c7536f85b
 </resources>

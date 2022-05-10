@@ -35,12 +35,20 @@ android_library(
 
 android_build_config(
     name = "build_config",
+<<<<<<< HEAD
+    package = "com.climbers",
+=======
     package = "com.climbersproject",
+>>>>>>> fcd9be62da78ed6582b8dac628c12c0c7536f85b
 )
 
 android_resource(
     name = "res",
+<<<<<<< HEAD
+    package = "com.climbers",
+=======
     package = "com.climbersproject",
+>>>>>>> fcd9be62da78ed6582b8dac628c12c0c7536f85b
     res = "src/main/res",
 )
 
