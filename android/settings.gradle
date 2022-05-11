@@ -2,8 +2,12 @@
 rootProject.name = 'Climbers'
 =======
 rootProject.name = 'ClimbersProject'
+<<<<<<< HEAD
 include ':react-native-video'
 project(':react-native-video').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-video/android')
+=======
+>>>>>>> fcd9be62da78ed6582b8dac628c12c0c7536f85b
+>>>>>>> main
 
 apply from: new File(["node", "--print", "require.resolve('expo/package.json')"].execute(null, rootDir).text.trim(), "../scripts/autolinking.gradle");
 useExpoModules()
