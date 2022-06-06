@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.climbers">
+
+  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+  <uses-permission android:name="android.permission.INTERNET"/>
+=======
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.climbersproject">
 
   <uses-permission android:name="android.permission.INTERNET"/>
@@ -5,6 +14,7 @@
   <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
   <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+>>>>>>> fcd9be62da78ed6582b8dac628c12c0c7536f85b
   <!-- OPTIONAL PERMISSIONS, REMOVE WHATEVER YOU DO NOT NEED -->
   <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
   <uses-permission android:name="android.permission.VIBRATE"/>
@@ -13,6 +23,15 @@
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
   <!-- END OPTIONAL PERMISSIONS -->
 
+<<<<<<< HEAD
+  <application>
+    <meta-data
+      android:name="com.naver.maps.map.f1wc8bsj71"
+      android:value="f1wc8bsj71" />
+  </application>
+
+=======
+>>>>>>> fcd9be62da78ed6582b8dac628c12c0c7536f85b
   <queries>
     <!-- Support checking for http(s) links via the Linking API -->
     <intent>
@@ -32,8 +51,11 @@
       </intent-filter>
     </activity>
     <activity android:name="com.facebook.react.devsupport.DevSettingsActivity"/>
+<<<<<<< HEAD
+=======
     <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="yjr7vh299u" />
+>>>>>>> fcd9be62da78ed6582b8dac628c12c0c7536f85b
   </application>
 </manifest>
